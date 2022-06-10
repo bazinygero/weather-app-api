@@ -55,9 +55,12 @@ h1, h3 {
 }
 
 .city-time,
-.temp,
-.weather {
+.temp {
     margin: 0;
+}
+
+.weather {
+    margin: 10px;
 }
 
 .city-time h1 {
