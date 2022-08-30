@@ -8,7 +8,7 @@ const icon = document.querySelector('.icon');
 const cloudOutput = document.querySelector('.cloud');
 const humidityOutput = document.querySelector('.humidity');
 const windOutput = document.querySelector('.wind');
-const form = document.querySelector('.location-input');
+const form = document.getElementById('locationInput');
 const search = document.querySelector('.search');
 const cities = document.querySelectorAll('.city');
 const btn = document.querySelector('.submit');
@@ -52,18 +52,18 @@ function dayOfTheWeek(day, month, year) {
         "Thursday",
         "Friday",
         "Saturday"
-    ];
+    ];  
     return weekday[new Date(`${day}/${month}/${year}`).getDay()];
 }
 
 function fetchWeatherData() {
-fetch(`http://api.weatherapi.com/v1/current.json?key=f31cd0f949e143df86f202443220506&q=${cityInput}&aqi=no`)
+fetch(`http://api.weatherapi.com/v1/current.json?key=f31cd0f949e143df86f202443220506&q=${cityInput}`)
 
     .then(response => response.json())
     .then(data => {
         console.log(data);
 
-        temp.innerHTML = data.current.temp_c + "&#176";
+        temp.innerHTML = data.current.temp_c + "&#176;";
         conditionOutput.innerHTML = data.current.contition.text;
 
         const date = data.location.localtime;
@@ -72,7 +72,7 @@ fetch(`http://api.weatherapi.com/v1/current.json?key=f31cd0f949e143df86f20244322
         const d = parseInt(date.substr(8, 2));
         const time = date.substr(11);
 
-        dateOutput.innerHTML = `${dayOfTheWeek (d, m, y)} ${d}, ${m}, ${y}`;
+        dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}, ${m}, ${y}`;
         timeOutput.innerHTML = time;
         nameOutput.innerHTML = data.location.name;
 
